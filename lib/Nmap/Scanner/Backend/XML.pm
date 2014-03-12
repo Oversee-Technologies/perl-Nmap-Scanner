@@ -44,7 +44,7 @@ sub process {
   <nmap-err>$err</nmap-msg>
 </nmap-error>
 EOF
-        exit 1;
+        return undef;
     }
 
     my $handler = NmapHandler->new($self);
@@ -70,7 +70,7 @@ EOF
 </nmap-error>
 EOF
         close($read);
-        exit 1;
+        return undef;
 
     }
 
