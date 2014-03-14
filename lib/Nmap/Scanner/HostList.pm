@@ -21,7 +21,7 @@ sub as_xml {
 
     my $self = shift;
 
-    my $xml;
+    my $xml = '';
 
     while (my $host = $self->get_next()) {
         last unless defined $host;

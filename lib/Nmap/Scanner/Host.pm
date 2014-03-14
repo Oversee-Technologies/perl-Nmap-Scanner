@@ -59,14 +59,13 @@ class 'Nmap::Scanner::Host' => {qw(
     '&as_xml' => q!
 
     my $xml = qq(<host><status state="$self->{status}"/>\n);
-  
+
     for my $a ($self->addresses()) {
         $xml .= $a->as_xml() . "\n";
     }
 
     $xml .= qq(<smurf responses="$self->{smurf}"/>\n) 
-                if $self->{smurf} > 0;
-
+                if defined($self->{smurf}) && ($self->{smurf} > 0);
     my $hxml = '';
 
     foreach my $h ($self->hostnames()) {
@@ -79,6 +78,7 @@ class 'Nmap::Scanner::Host' => {qw(
   
     my $pxml .= $self->extra_ports()->as_xml() ."\n"
                 if $self->extra_ports();
+
 
     $pxml .= $self->get_tcp_port_list()->as_xml();
     $pxml .= $self->get_udp_port_list()->as_xml();

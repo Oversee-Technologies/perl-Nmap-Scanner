@@ -103,7 +103,6 @@ sub as_xml {
     my $self = shift;
 
     my $tmp = $self->get_host_list()->as_xml();
-
     my $xml = "<?xml version=\"1.0\"?>\n";
     $xml   .= $self->nmap_run()->as_xml($tmp);
 

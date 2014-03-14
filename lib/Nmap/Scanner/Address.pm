@@ -5,9 +5,9 @@ class 'Nmap::Scanner::Address' => {
     qw(addr     $
        addrtype $
        vendor   $),
-    '&as_xml' => q!return qq(<address addr="$addr" ) .
-                          qq(addrtype="$addrtype" ) .
-                          qq(vendor="$vendor"/>);!
+    '&as_xml' => q!return (defined($addr) ? qq(<address addr="$addr" ) : qq(<address addr="" )) .
+                          (defined($addrtype) ? qq(addrtype="$addrtype" ) : qq(addrtype="" )) .
+                          (defined($vendor) ? qq(vendor="$vendor"/>) : qq(vendor=""/>));!
 };
 
 =pod

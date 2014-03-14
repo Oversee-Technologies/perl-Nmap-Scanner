@@ -31,13 +31,13 @@ sub get_next {
 sub as_xml {
     my $self = shift;
 
-    my $xml;
+    my $xml = '';
 
     while (my $p = $self->get_next()) {
         last unless defined $p;
+
         $xml .= $p->as_xml() . "\n";
     }
-
     return $xml;
 
 }
