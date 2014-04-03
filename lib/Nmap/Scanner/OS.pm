@@ -20,6 +20,8 @@ class 'Nmap::Scanner::OS' => {
     #  No fingerprinting happened if no ports found to fingerprint with.
     return unless scalar($self->ports_used()) > 0;
 
+    open(my $OLDERR, '>&', STDERR);
+    open(STDERR, '> /dev/null');
     my $xml = "<os>\n";
 
     for my $port ($self->ports_used()) {
@@ -43,6 +45,7 @@ class 'Nmap::Scanner::OS' => {
         ($self->{'tcptssequence'} ? $self->{'tcptssequence'}->as_xml() : ''),
         ($self->{'ipidsequence'} ? $self->{'ipidsequence'}->as_xml() : ''));
 
+    open(STDERR, '>&', $OLDERR);
     return $xml;
 
     !
